@@ -7,16 +7,25 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   body
-  nav.navbar.navbar-default role="navigation"
-    div.container-fluid
-      div.navbar-header
-        button.navbar-toggle type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-          spansr-only Toggle navigation
-          spanicon-bar
-          spanicon-bar
-          spanicon-bar
-        = link_to 'Klaus', root_path, class: 'navbar-brand'
-      div.collapse.navbar-collapse#bs-example-navbar-collapse-1
-  div.row
-    div.col-md-12
+    nav.navbar.navbar-default role="navigation"
+      div.container-fluid
+        div.navbar-header
+          button.navbar-toggle type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+            spansr-only Toggle navigation
+            spanicon-bar
+            spanicon-bar
+            spanicon-bar
+          = link_to 'Klaus', root_path, class: 'navbar-brand'
+        div.collapse.navbar-collapse#bs-example-navbar-collapse-1
+    div.container
+      - if notice
+        div.alert.alert-success.alert-dismissable
+          button type="button" class="close" data-dismiss="alert" aria-hidden="true"
+            | &times;
+          = notice
+      - if alert
+        div.alert.alert-danger.alert-dismissable
+          button type="button" class="close" data-dismiss="alert" aria-hidden="true"
+            | &times;
+          = alert
       = yield
