@@ -44,3 +44,6 @@ gem 'slim'
 # Twitter bootstrap
 gem 'less-rails-bootstrap'
 gem 'bootstrap_form', github: 'bootstrap-ruby/rails-bootstrap-forms'
+
+# Table generation
+gem "wice_grid"
