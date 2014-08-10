@@ -1,5 +1,33 @@
-<%= grid(@documents_grid, upper_pagination_panel: true) do |g|
-    g.column name: 'ID', attribute: 'id'
-    g.column name: 'Name', attribute: 'name'
+<%
+  define_grid(@documents_grid, upper_pagination_panel: true) do |g|
+    g.blank_slate content_tag(:div, "No records found", class: 'well')
+
+    g.column name: 'Position', attribute: 'position'
+
+    g.column name: 'Semester', attribute: 'id', detach_with_id: 'semester_filter', model: 'Semester', custom_filter: Semester.to_dropdown do |document|
+      document.semester.name if document.semester
+    end
+
+    g.column name: 'Typ', attribute: 'id', detach_with_id: 'doc_type_filter', model: 'DocType', html:{class: 'text-center'}, custom_filter: DocType.to_dropdown do |document|
+      document.doc_type.name if document.doc_type
+    end
+
+    g.column name: 'Fach', attribute: 'id', detach_with_id: 'lesson_filter', model: 'Lesson', custom_filter: Lesson.to_dropdown do |document|
+      document.lesson.name if document.lesson
+    end
+
+    g.column name: 'Professor', attribute: 'id', detach_with_id: 'professor_filter', model: 'Professor', custom_filter: Professor.to_dropdown do |document|
+      document.professor.name_last_first if document.professor
+    end
+
+    g.column html:{class: 'text-center'} do |document|
+      contant = content_tag(:div, class: 'btn-group') do
+        link = ''.html_safe
+        link.concat btn_link_to('Download', document.file_url, class: 'btn-xs btn-primary')
+        link.concat btn_link_to('Edit', edit_document_path(document), class: 'btn-xs btn-warning') if user_signed_in?
+        link.concat btn_link_to('Delete', document_path(document), method: "delete", :data => { confirm: 'Are you sure?' }, class: 'btn-xs btn-danger') if user_signed_in?
+        link
+      end
+    end
   end
 %>

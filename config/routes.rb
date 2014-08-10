@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :documents
+  resources :doc_types
+  resources :semesters
+  resources :professors
+  resources :lessons
 
   root 'documents#index'
   # The priority is based upon order of creation: first created -> highest priority.

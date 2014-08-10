@@ -10,14 +10,23 @@ html
     nav.navbar.navbar-default role="navigation"
       div.container-fluid
         div.navbar-header
-          button.navbar-toggle type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+          button.navbar-toggle type="button" data-toggle="collapse" data-target="#navbar"
             spansr-only Toggle navigation
             spanicon-bar
             spanicon-bar
             spanicon-bar
           = link_to 'Klaus', root_path, class: 'navbar-brand'
-        div.collapse.navbar-collapse#bs-example-navbar-collapse-1
+        div.collapse.navbar-collapse#navbar
+          ul.nav.navbar-nav
+            li = link_to 'Übersicht', documents_path
+            li = link_to 'Neues Dokument', new_document_path
+            li = link_to 'Neuer Dokument Typ', new_doc_type_path
+            li = link_to 'Neuer Professor', new_professor_path
+            li = link_to 'Neues Semester', new_semester_path
+            li = link_to 'Neues Fach', new_lesson_path
     div.container
+      div.page-header
+        h1 = content_for :page_header
       - if notice
         div.alert.alert-success.alert-dismissable
           button type="button" class="close" data-dismiss="alert" aria-hidden="true"
@@ -29,3 +38,13 @@ html
             | &times;
           = alert
       = yield
+      footer.text-center
+        p
+          | CC BY-NC-SA - Fachschaft MNI - Technische Hochschule Mittelhessen
+          br
+          == "Index: #{link_to 'Type', doc_types_path} | #{link_to 'Fach', lessons_path} | #{link_to 'Professor', professors_path} | #{link_to 'Semester', semesters_path}"
+          br
+          - if user_signed_in?
+            = link_to 'Logout', destroy_user_session_path, method: :delete
+          - else
+           = link_to 'Login', new_user_session_path

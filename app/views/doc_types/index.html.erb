@@ -1,0 +1,18 @@
+<% content_for :page_header do %>
+Typ - Index
+<% end %>
+<%= grid(@doc_types_grid, upper_pagination_panel: true) do |g|
+    g.blank_slate content_tag(:div, "No records found", class: 'well')
+    g.column name: 'ID', attribute: 'id'
+    g.column name: 'Name', attribute: 'name'
+
+    g.column do |doc_type|
+      contant = content_tag(:div, class: 'btn-group') do
+        link = ''.html_safe
+        link.concat btn_link_to('Edit', edit_doc_type_path(doc_type), class: 'btn-xs btn-warning') if user_signed_in?
+        link.concat btn_link_to('Delete', doc_type_path(doc_type), method: "delete", :data => { confirm: 'Are you sure?' }, class: 'btn-xs btn-danger') if user_signed_in?
+        link
+      end
+    end
+  end
+ %>

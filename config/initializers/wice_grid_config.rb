@@ -22,7 +22,7 @@ if defined?(Wice::Defaults)
   Wice::Defaults::DEFAULT_TABLE_CLASSES = ['table', 'table-bordered', 'table-striped']
 
   # Allow switching between a single and multiple selection modes in custom filters (dropdown boxes)
-  Wice::Defaults::ALLOW_MULTIPLE_SELECTION = true
+  Wice::Defaults::ALLOW_MULTIPLE_SELECTION = false
 
   # Show the upper pagination panel by default or not
   Wice::Defaults::SHOW_UPPER_PAGINATION_PANEL = false

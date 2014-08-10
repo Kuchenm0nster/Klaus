@@ -1,0 +1,18 @@
+<% content_for :page_header do %>
+Semester - Index
+<% end %>
+<%= grid(@semesters_grid, upper_pagination_panel: true) do |g|
+    g.blank_slate content_tag(:div, "No records found", class: 'well')
+    g.column name: 'ID', attribute: 'id'
+    g.column name: 'Name', attribute: 'name'
+
+    g.column do |semester|
+      contant = content_tag(:div, class: 'btn-group') do
+        link = ''.html_safe
+        link.concat btn_link_to('Edit', edit_semester_path(semester), class: 'btn-xs btn-warning') if user_signed_in?
+        link.concat btn_link_to('Delete', semester_path(semester), method: "delete", :data => { confirm: 'Are you sure?' }, class: 'btn-xs btn-danger') if user_signed_in?
+        link
+      end
+    end
+  end
+ %>

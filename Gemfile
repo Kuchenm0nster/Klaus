@@ -47,3 +47,12 @@ gem 'bootstrap_form', github: 'bootstrap-ruby/rails-bootstrap-forms'
 
 # Table generation
 gem "wice_grid"
+
+# File Upload
+gem 'carrierwave'
+
+# User Verwaltung
+gem 'devise'
+
+# Autostrip whitespaces
+gem "auto_strip_attributes", "~> 2.0"

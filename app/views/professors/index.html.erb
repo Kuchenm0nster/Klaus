@@ -1,0 +1,19 @@
+<% content_for :page_header do %>
+Professor - Index
+<% end %>
+<%= grid(@professors_grid, upper_pagination_panel: true) do |g|
+    g.blank_slate content_tag(:div, "No records found", class: 'well')
+    g.column name: 'ID', attribute: 'id'
+    g.column name: 'First Name', attribute: 'first_name'
+    g.column name: 'Last Name', attribute: 'last_name'
+
+    g.column do |professor|
+      contant = content_tag(:div, class: 'btn-group') do
+        link = ''.html_safe
+        link.concat btn_link_to('Edit', edit_professor_path(professor), class: 'btn-xs btn-warning') if user_signed_in?
+        link.concat btn_link_to('Delete', professor_path(professor), method: "delete", :data => { confirm: 'Are you sure?' }, class: 'btn-xs btn-danger') if user_signed_in?
+        link
+      end
+    end
+  end
+ %>

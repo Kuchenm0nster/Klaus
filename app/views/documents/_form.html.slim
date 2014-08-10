@@ -1,4 +1,16 @@
-= bootstrap_form_for(@document) do |f|
-  = f.text_field :name
-
-  = f.submit
+div.well
+  = bootstrap_form_for(@document, html: {multipart: true}) do |f|
+    = f.collection_select :doc_type_id,  DocType.order(:name).all, :id, :name, prompt: true
+    = f.collection_select :semester_id,  Semester.order(name: :desc).all, :id, :name, prompt: true
+    = f.collection_select :lesson_id,    Lesson.order(:name).all, :id, :name, prompt: true
+    = f.collection_select :professor_id, Professor.order(:last_name).all, :id, :last_name, prompt: true
+    - if @document.new_record?
+      div.row
+        div.col-lg-6
+          = f.file_field :file
+        div.col-lg-6
+          - if @document.file_cache
+            = f.static_control label: 'Uploaded file'
+              = link_to @document.file.filename, @document.file_url
+          = f.hidden_field :file_cache, readonly: true
+    = f.submit

@@ -1,0 +1,4 @@
+- content_for :page_header
+  | Dokument - #{@document.semester.name} / #{@document.professor.name} / #{@document.lesson.name} / #{@document.doc_type.name}
+
+= render 'form'

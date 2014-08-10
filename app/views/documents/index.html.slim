@@ -1,6 +1,40 @@
-h1 Index
+- content_for :page_header
+  | Dokumente - Index
+- render 'grid'
 
-p
-  = btn_link_to 'New', new_document_path, class: 'btn-primary'
-
-= render 'grid'
+div.col-lg-2.col-md-2.text-center
+  = image_tag 'QR-FS-Logo_-_fsmni.thm.de.png'
+div.col-lg-10.col-md-10
+  div.panel.panel-default
+    div.panel-heading
+      h3.panel-title
+        | &nbsp;Filter
+    div
+      div.panel-body
+        div.form-horizontal
+          div.col-lg-6.col-md-11
+            div.form-group
+              label for="last_name_filter" class="col-sm-2 control-label" Professor
+              div class="col-sm-10"
+                = grid_filter @documents_grid, :professor_filter
+            div class="form-group"
+              label for="first_name_filter" class="col-sm-2 control-label" Fach
+              div class="col-sm-10"
+                = grid_filter @documents_grid, :lesson_filter
+          div class="col-lg-5 col-md-11"
+            div class="form-group"
+              label for="middle_name_filter" class="col-sm-2 control-label" Semester
+              div class="col-sm-10"
+                = grid_filter @documents_grid, :semester_filter
+            div class="form-group"
+              label for="id_filter" class="col-sm-2 control-label" Type
+              div class="col-sm-10"
+                = grid_filter @documents_grid, :doc_type_filter
+          div class="col-lg-1 col-md-1"
+            div class="form-group"
+              button class="btn btn-primary wg-external-submit-button" data-grid-name='grid' Submit
+          div class="col-lg-1 col-md-1"
+            div class="form-group"
+              button class="btn btn-default wg-external-reset-button" data-grid-name='grid' Reset
+div.col-lg-12.col-md-12
+  == render_grid(@documents_grid)
