@@ -56,3 +56,6 @@ gem 'devise'
 
 # Autostrip whitespaces
 gem "auto_strip_attributes", "~> 2.0"
+
+# Passenger deployment
+gem "passenger"
